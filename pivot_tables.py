@@ -31,7 +31,9 @@ def dataframe_info(df):
 
 df = pd.read_excel('sales-funnel.xlsx')
 dataframe_info(df)
-df.head()
+print('\n', df.head())
+
+
 # Pivot table using index and values parameters.
 # By default the aggfunc is the average.
 pd.pivot_table(df, values=['Price'], index=['Manager']).round(2)
