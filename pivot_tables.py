@@ -118,6 +118,8 @@ table = pd.pivot_table(df,
                        columns=['Product'],
                        aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
                        fill_value=0).round(2)
+# Sort on one column, price.
+table.sort_values(by=('Price', 'mean', 'CPU'), ascending=False)
 # Filter for one manager.
 table.query('Manager == ["Debra Henley"]')
 # Or just string the query method to the previous code.
