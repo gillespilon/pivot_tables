@@ -193,8 +193,19 @@ def main():
         .query('Manager == ["Debra Henley"]')\
         .round(2)
     print(table)
-    # Another query.
-    table.query('Status == ["pending", "won"]')
+    print()
+    print('Pivot table, another query')
+    table = pd.pivot_table(
+        data=df,
+        values=['Price', 'Quantity'],
+        index=['Manager', 'Status'],
+        columns=['Product'],
+        aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
+        fill_value=0
+    )\
+        .query('Status == ["pending", "won"]')\
+        .round(2)
+    print(table)
     # And another query.
     table.query('Status == ["pending", "won"]')\
          .query('Manager == ["Debra Henley"]')
