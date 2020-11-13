@@ -25,9 +25,9 @@ def main():
         df=df,
         file_in='sales-funnel.xlsx'
     )
-    print('\n', df.head())
-    # Pivot table using index and values parameters.
-    # By default the aggfunc is the average.
+    print(df.head())
+    print()
+    print('Pivot table')
     print(
         pd.pivot_table(
             df,
