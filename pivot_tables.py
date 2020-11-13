@@ -30,7 +30,7 @@ def main():
     print('Pivot table, implicit parameters')
     print(
         pd.pivot_table(
-            df,
+            data=df,
             values=['Price'],
             index=['Manager']
         ).round(2)
@@ -39,7 +39,7 @@ def main():
     print('Pivot table, explicit parameters')
     print(
         pd.pivot_table(
-            df,
+            data=df,
             values=['Price'],
             index=['Manager'],
             aggfunc='mean'
@@ -48,17 +48,23 @@ def main():
     print()
     print('Pivot table, multiple-level index')
     print(
-        pd.pivot_table(df,
+        pd.pivot_table(
+            data=df,
             values=['Price'],
             index=['Manager', 'Rep'],
             aggfunc='mean'
         ).round(2)
     )
-    # The aggfunc can have several parameters.
-    pd.pivot_table(df,
-                   values=['Price'],
-                   index=['Manager', 'Rep'],
-                   aggfunc=[np.mean, np.sum, len]).round(2)
+    print()
+    print('Pivot table, multi-parameter aggfunc')
+    print(
+        pd.pivot_table(
+            data=df,
+            values=['Price'],
+            index=['Manager', 'Rep'],
+            aggfunc={'Price': [np.mean, np.sum, len]}
+        ).round(2)
+    )
     # The columns parameter is optional.
     # It provides an additional way to segment values.
     # The index can have multiple levels.
