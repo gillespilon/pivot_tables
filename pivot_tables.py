@@ -27,7 +27,7 @@ def main():
     )
     print(df.head())
     print()
-    print('Pivot table')
+    print('Pivot table, implicit parameters')
     print(
         pd.pivot_table(
             df,
@@ -35,16 +35,25 @@ def main():
             index=['Manager']
         ).round(2)
     )
-    # To be explicit.
-    pd.pivot_table(df,
-                   values=['Price'],
-                   index=['Manager'],
-                   aggfunc='mean').round(2)
-    # The index can have multiple levels.
-    pd.pivot_table(df,
-                   values=['Price'],
-                   index=['Manager', 'Rep'],
-                   aggfunc='mean').round(2)
+    print()
+    print('Pivot table, explicit parameters')
+    print(
+        pd.pivot_table(
+            df,
+            values=['Price'],
+            index=['Manager'],
+            aggfunc='mean'
+        ).round(2)
+    )
+    print()
+    print('Pivot table, multiple-level index')
+    print(
+        pd.pivot_table(df,
+            values=['Price'],
+            index=['Manager', 'Rep'],
+            aggfunc='mean'
+        ).round(2)
+    )
     # The aggfunc can have several parameters.
     pd.pivot_table(df,
                    values=['Price'],
