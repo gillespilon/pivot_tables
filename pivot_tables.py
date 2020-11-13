@@ -175,8 +175,10 @@ def main():
     print('Pivot table, sort on price, mean CPU')
     table = table.sort_values(by=('Price', 'mean', 'CPU'), ascending=False)
     print(table)
-    # Filter for one manager.
-    table.query('Manager == ["Debra Henley"]')
+    print()
+    print('Pivot table, filter for one manager')
+    table = table.query('Manager == ["Debra Henley"]')
+    print(table)
     # Or just string the query method to the previous code.
     # Pass a dictionary to the aggfunc to perform different functions.
     # Each value can have a dictionary. Need to remove totals (why?).
