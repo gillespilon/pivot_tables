@@ -123,22 +123,31 @@ def main():
             margins=True
         ).round(2)
     )
-    # Change the categories to look at the Manager level,
-    # add Status, remove Quantity.
-    pd.pivot_table(df,
-                   values=['Price', 'Quantity'],
-                   index=['Manager', 'Status'],
-                   aggfunc=[np.sum],
-                   fill_value=0,
-                   margins=True).round(2)
-    # Pass a dictionary to the aggfunc to perform different functions.
-    pd.pivot_table(df,
-                   values=['Price', 'Quantity'],
-                   index=['Manager', 'Status'],
-                   columns=['Product'],
-                   aggfunc={'Quantity': len, 'Price': np.sum},
-                   fill_value=0,
-                   margins=True).round(2)
+    print()
+    print('Pivot table, change categories')
+    print(
+        pd.pivot_table(
+            data=df,
+            values=['Price', 'Quantity'],
+            index=['Manager', 'Status'],
+            aggfunc=[np.sum],
+            fill_value=0,
+            margins=True
+        ).round(2)
+    )
+    print()
+    print('Pivot table, pass dictionary to aggfunc')
+    print(
+        pd.pivot_table(
+            data=df,
+            values=['Price', 'Quantity'],
+            index=['Manager', 'Status'],
+            columns=['Product'],
+            aggfunc={'Quantity': len, 'Price': np.sum},
+            fill_value=0,
+            margins=True
+        ).round(2)
+    )
     # Pass a dictionary to the aggfunc to perform different functions.
     # Each value can have a dictionary. Need to remove totals (why?).
     pd.pivot_table(df,
