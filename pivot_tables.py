@@ -172,16 +172,5 @@ def main():
     )
 
 
-def byte_size(num, suffix='B'):
-    '''
-    Convert bytes to appropriate multiple.
-    '''
-    for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
-        if abs(num) < 1024.0:
-            return "%3.1f %s%s" % (num, unit, suffix)
-        num /= 1024.0
-    return "%.1f %s%s" % (num, 'Yi', suffix)
-
-
 if __name__ == '__main__':
     main()
