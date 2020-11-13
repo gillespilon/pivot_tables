@@ -9,6 +9,9 @@ import numpy as np
 
 
 def main():
+    pd.options.display.width = 220
+    pd.options.display.max_columns = 220
+    pd.options.display.max_rows = 220
     output_url = 'pivot_table.html'
     header_title = 'Pivot tables'
     header_id = 'pivot-tables'
@@ -150,15 +153,6 @@ def byte_size(num, suffix='B'):
             return "%3.1f %s%s" % (num, unit, suffix)
         num /= 1024.0
     return "%.1f %s%s" % (num, 'Yi', suffix)
-
-
-def dataframe_info(df):
-    print(
-        'Dataframe information',
-        '\nColumn names   : ', list(df),
-        '\nRows         : ', df.shape[0],
-        '\nColumns      : ', df.shape[1],
-       '\nMemory usage :', byte_size(df.memory_usage(index=True).sum()))
 
 
 if __name__ == '__main__':
