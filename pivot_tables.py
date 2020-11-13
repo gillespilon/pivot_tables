@@ -111,13 +111,18 @@ def main():
             fill_value=0
         ).round(2)
     )
-    # Show totals.
-    pd.pivot_table(df,
-                   values=['Price', 'Quantity'],
-                   index=['Manager', 'Rep', 'Product'],
-                   aggfunc=[np.sum],
-                   fill_value=0,
-                   margins=True).round(2)
+    print()
+    print('Pivot table, show totals')
+    print(
+        pd.pivot_table(
+            data=df,
+            values=['Price', 'Quantity'],
+            index=['Manager', 'Rep', 'Product'],
+            aggfunc=[np.sum],
+            fill_value=0,
+            margins=True
+        ).round(2)
+    )
     # Change the categories to look at the Manager level,
     # add Status, remove Quantity.
     pd.pivot_table(df,
