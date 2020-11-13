@@ -179,15 +179,20 @@ def main():
     print('Pivot table, filter for one manager')
     table = table.query('Manager == ["Debra Henley"]')
     print(table)
-    # Or just string the query method to the previous code.
-    # Pass a dictionary to the aggfunc to perform different functions.
-    # Each value can have a dictionary. Need to remove totals (why?).
-    pd.pivot_table(df,
-                   values=['Price', 'Quantity'],
-                   index=['Manager', 'Status'],
-                   columns=['Product'],
-                   aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
-                   fill_value=0).round(2).query('Manager == ["Debra Henley"]')
+    print()
+    print('Pivot table, sort and filter with multiple "dots"')
+    table = pd.pivot_table(
+        data=df,
+        values=['Price', 'Quantity'],
+        index=['Manager', 'Status'],
+        columns=['Product'],
+        aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
+        fill_value=0
+    )\
+        .sort_values(by=('Price', 'mean', 'CPU'), ascending=False)\
+        .query('Manager == ["Debra Henley"]')\
+        .round(2)
+    print(table)
     # Another query.
     table.query('Status == ["pending", "won"]')
     # And another query.
