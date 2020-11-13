@@ -3,16 +3,23 @@
 Example of pivot tables
 """
 
+import datasense as ds
 import pandas as pd
 import numpy as np
 
 
 def main():
+    output_url = 'pivot_table.html'
+    header_title = 'Pivot tables'
+    header_id = 'pivot-tables'
+    original_stdout = ds.html_begin(
+        output_url=output_url,
+        header_title=header_title,
+        header_id=header_id
+    )
     df = pd.read_excel('sales-funnel.xlsx')
     dataframe_info(df)
     print('\n', df.head())
-
-
     # Pivot table using index and values parameters.
     # By default the aggfunc is the average.
     pd.pivot_table(df, values=['Price'], index=['Manager']).round(2)
@@ -91,12 +98,14 @@ def main():
                    aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
                    fill_value=0).round(2)
     # Do this again and save to a variable.
-    table = pd.pivot_table(df,
-                           values=['Price', 'Quantity'],
-                           index=['Manager', 'Status'],
-                           columns=['Product'],
-                           aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
-                           fill_value=0).round(2)
+    table = pd.pivot_table(
+        df,
+        values=['Price', 'Quantity'],
+        index=['Manager', 'Status'],
+        columns=['Product'],
+        aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
+        fill_value=0
+    ).round(2)
     # Sort on one column, price.
     table.sort_values(by=('Price', 'mean', 'CPU'), ascending=False)
     # Filter for one manager.
@@ -117,6 +126,10 @@ def main():
          .query('Manager == ["Debra Henley"]')
     # Or this way.
     table.query('Status == ["pending", "won"] & Manager == ["Debra Henley"]')
+    ds.html_end(
+        original_stdout=original_stdout,
+        output_url=output_url
+    )
 
 
 def byte_size(num, suffix='B'):
@@ -131,11 +144,12 @@ def byte_size(num, suffix='B'):
 
 
 def dataframe_info(df):
-    print(f'Dataframe information',
-          f'\nColumn names   : ', list(df),
-          f'\nRows         : ', df.shape[0],
-          f'\nColumns      : ', df.shape[1],
-          f'\nMemory usage :', byte_size(df.memory_usage(index=True).sum()))
+    print(
+        'Dataframe information',
+        '\nColumn names   : ', list(df),
+        '\nRows         : ', df.shape[0],
+        '\nColumns      : ', df.shape[1],
+        '\nMemory usage :', byte_size(df.memory_usage(index=True).sum()))
 
 
 if __name__ == '__main__':
