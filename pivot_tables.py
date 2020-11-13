@@ -171,8 +171,10 @@ def main():
         fill_value=0
     ).round(2)
     print(table)
-    # Sort on one column, price.
-    table.sort_values(by=('Price', 'mean', 'CPU'), ascending=False)
+    print()
+    print('Pivot table, sort on price, mean CPU')
+    table = table.sort_values(by=('Price', 'mean', 'CPU'), ascending=False)
+    print(table)
     # Filter for one manager.
     table.query('Manager == ["Debra Henley"]')
     # Or just string the query method to the previous code.
