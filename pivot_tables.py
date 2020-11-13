@@ -22,7 +22,13 @@ def main():
     print('\n', df.head())
     # Pivot table using index and values parameters.
     # By default the aggfunc is the average.
-    pd.pivot_table(df, values=['Price'], index=['Manager']).round(2)
+    print(
+        pd.pivot_table(
+            df,
+            values=['Price'],
+            index=['Manager']
+        ).round(2)
+    )
     # To be explicit.
     pd.pivot_table(df,
                    values=['Price'],
@@ -149,7 +155,7 @@ def dataframe_info(df):
         '\nColumn names   : ', list(df),
         '\nRows         : ', df.shape[0],
         '\nColumns      : ', df.shape[1],
-        '\nMemory usage :', byte_size(df.memory_usage(index=True).sum()))
+       '\nMemory usage :', byte_size(df.memory_usage(index=True).sum()))
 
 
 if __name__ == '__main__':
