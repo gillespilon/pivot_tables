@@ -88,13 +88,18 @@ def main():
             fill_value=0
         ).round(2)
     )
-    # Add another column to the values parameter.
-    pd.pivot_table(df,
-                   values=['Price', 'Quantity'],
-                   index=['Manager', 'Rep'],
-                   columns=['Product'],
-                   aggfunc=[np.sum],
-                   fill_value=0).round(2)
+    print()
+    print('Pivot table, add second colume to values parameter')
+    print(
+        pd.pivot_table(
+            data=df,
+            values=['Price', 'Quantity'],
+            index=['Manager', 'Rep'],
+            columns=['Product'],
+            aggfunc=[np.sum],
+            fill_value=0
+        ).round(2)
+    )
     # Move the product column to the index.
     pd.pivot_table(df,
                    values=['Price', 'Quantity'],
