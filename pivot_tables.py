@@ -160,15 +160,17 @@ def main():
             fill_value=0
         ).round(2)
     )
-    # Do this again and save to a variable.
+    print()
+    print('Pivot table, save to variable')
     table = pd.pivot_table(
-        df,
+        data=df,
         values=['Price', 'Quantity'],
         index=['Manager', 'Status'],
         columns=['Product'],
         aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
         fill_value=0
     ).round(2)
+    print(table)
     # Sort on one column, price.
     table.sort_values(by=('Price', 'mean', 'CPU'), ascending=False)
     # Filter for one manager.
