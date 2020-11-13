@@ -68,11 +68,17 @@ def main():
     # The columns parameter is optional.
     # It provides an additional way to segment values.
     # The index can have multiple levels.
-    pd.pivot_table(df,
-                   values=['Price'],
-                   index=['Manager', 'Rep'],
-                   columns=['Product'],
-                   aggfunc=[np.sum]).round(2)
+    print()
+    print('Pivot table, columns parameter is optional')
+    print(
+        pd.pivot_table(
+            data=df,
+            values=['Price'],
+            index=['Manager', 'Rep'],
+            columns=['Product'],
+            aggfunc=[np.sum]
+        ).round(2)
+    )
     # Replace the NaN with 0.
     pd.pivot_table(df,
                    values=['Price'],
