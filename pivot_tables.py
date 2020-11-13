@@ -148,14 +148,18 @@ def main():
             margins=True
         ).round(2)
     )
-    # Pass a dictionary to the aggfunc to perform different functions.
-    # Each value can have a dictionary. Need to remove totals (why?).
-    pd.pivot_table(df,
-                   values=['Price', 'Quantity'],
-                   index=['Manager', 'Status'],
-                   columns=['Product'],
-                   aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
-                   fill_value=0).round(2)
+    print()
+    print('Pivot table, pass dictionary to aggfunc')
+    print(
+        pd.pivot_table(
+            data=df,
+            values=['Price', 'Quantity'],
+            index=['Manager', 'Status'],
+            columns=['Product'],
+            aggfunc={'Quantity': len, 'Price': [np.sum, np.mean]},
+            fill_value=0
+        ).round(2)
+    )
     # Do this again and save to a variable.
     table = pd.pivot_table(
         df,
