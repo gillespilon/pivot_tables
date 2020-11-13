@@ -18,7 +18,10 @@ def main():
         header_id=header_id
     )
     df = pd.read_excel('sales-funnel.xlsx')
-    dataframe_info(df)
+    ds.dataframe_info(
+        df=df,
+        file_in='sales-funnel.xlsx'
+    )
     print('\n', df.head())
     # Pivot table using index and values parameters.
     # By default the aggfunc is the average.
