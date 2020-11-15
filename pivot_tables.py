@@ -12,7 +12,7 @@ def main():
     pd.options.display.width = 220
     pd.options.display.max_columns = 220
     pd.options.display.max_rows = 220
-    output_url = 'pivot_table.html'
+    output_url = 'pivot_tables.html'
     header_title = 'Pivot tables'
     header_id = 'pivot-tables'
     original_stdout = ds.html_begin(
