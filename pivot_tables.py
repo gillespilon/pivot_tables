@@ -20,10 +20,10 @@ def main():
         header_title=header_title,
         header_id=header_id
     )
-    df = pd.read_excel('sales-funnel.xlsx')
+    df = ds.read_file(file_name='sales_funnel.xlsx')
     ds.dataframe_info(
         df=df,
-        file_in='sales-funnel.xlsx'
+        file_in='sales_funnel.xlsx'
     )
     print(df.head())
     print()
